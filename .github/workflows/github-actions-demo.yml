@@ -16,3 +16,8 @@ jobs:
         run: |
           ls ${{ github.workspace }}
       - run: echo "🍏 This job's status is ${{ job.status }}."
+      
+      - uses: actions/checkout@v2
+      - name: Install modules
+        run: npm install
+      - run: npm test
