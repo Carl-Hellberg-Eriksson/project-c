@@ -1,3 +1,12 @@
+# Project C
+
+This is a small app to practice good project flow whilst also preparing for a possible creation of Fredriks calculator.
+
+Tests in the tests folder are run on push to every branch.
+Pushes and pull-requests to main automatically trigger a deploy to https://polite-flower-0c3a78c03.3.azurestaticapps.net/
+
+# Next.js
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
