@@ -52,3 +52,10 @@ jobs:
         with:
           start: npm start
           browser: chrome
+
+      - name: Save cypress/videos folder
+        uses: actions/upload-artifact@v3
+        with:
+          name: cypressvideos
+          if-no-files-found: error
+          path: cypress/videos
