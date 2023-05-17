@@ -37,7 +37,8 @@ const Calculator = () => {
               <TextField
                 label="Timlön:"
                 type="text"
-                defaultValue={0}
+                id="HourlyWage"
+                defaultValue={""}
                 onChange={ChangeHourlyWage}
               />
             </Tooltip>
@@ -49,8 +50,9 @@ const Calculator = () => {
             >
               <TextField
                 label="Antal timmar:"
+                id="Hours"
                 type="text"
-                defaultValue={0}
+                defaultValue={""}
                 onChange={ChangeHours}
               />
             </Tooltip>
@@ -61,7 +63,7 @@ const Calculator = () => {
             title="testasdfasdfasdfasdfasdf asd fasdf asdf"
             placement="left-start"
           >
-            <div>Total inkomst: {totalIncome}</div>
+            <div id="TotalIncome">Total inkomst: {totalIncome}</div>
           </Tooltip>
         </div>
       </div>
