@@ -20,10 +20,19 @@ describe('simple tests', () => {
     cy.visit('http://localhost:3000')
   })
 
-  it('displays two todo items by default', () => {
-    // We use the `cy.get()` command to get all elements that match the selector.
-    // Then, we use `should` to assert that there are two matched items,
-    // which are the two default items.
+  it('Has the correct title', () => {
     cy.get('h1').should('have.text', 'Project C')
+  })
+  it('has all the input-fields empty', () => {
+    cy.get('input').should('have.not.have.value')
+    cy.get('#TotalIncome').should('have.text', 'Total inkomst: 0')
+
+  })
+  it('can handle simple calc of total income', () => {
+    cy.get('#HourlyWage').type('100')
+    cy.get('#HourlyWage').should('have.value', '100')
+    cy.get('#Hours').type('200')
+    cy.get('#Hours').should('have.value', '200')
+    cy.get('#TotalIncome').should('have.text', 'Total inkomst: 20000')
   })
 })
