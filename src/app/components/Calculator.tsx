@@ -1,27 +1,33 @@
 "use client";
 import React from "react";
+import { useEffect, useState, useRef } from "react";
 import Tooltip from "@mui/material/Tooltip";
 import TextField from "@mui/material/TextField";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Switch from "@mui/material/Switch";
+import CountUp from "react-countup";
+import { CalculatorHelper } from "../objects/calculator_helper";
 
 const Calculator = () => {
+  const MIN_TAXABLE_MUNICIPALITY = 27000;
+  const MUNICIPALITY_TAX = 0.2;
+  const STATE_TAX = 0.05;
+
   const [hourlyWage, setHourlyWage] = React.useState(0);
   const [hours, setHours] = React.useState(0);
   const [doCalculateVacationSalary, setDoCalculateVacationSalary] =
     React.useState(false);
 
-  const MIN_TAXABLE_MUNICIPALITY = 27000;
-  const MUNICIPALITY_TAX = 0.2;
-  const STATE_TAX = 0.05;
   const ChangeHourlyWage = (event: React.ChangeEvent<HTMLInputElement>) => {
     var x = Number(event.target.value);
     setHourlyWage(x);
   };
+
   const ChangeHours = (event: React.ChangeEvent<HTMLInputElement>) => {
     var x = Number(event.target.value);
     setHours(x);
   };
+
   const changeCalculateVacationSalary = (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
@@ -36,6 +42,13 @@ const Calculator = () => {
   const stateTax = taxableState * STATE_TAX;
   const incomeAfterTax = totalIncome - municipalityTax - stateTax;
   const totalScore = totalIncome + 10000;
+  const [count, setCount] = useState(0);
+
+  // The useRef Hook allows you to persist data between renders
+  const prevCountRef = useRef<number>(0);
+  useEffect(() => {
+    prevCountRef.current = totalScore;
+  }, [totalScore]); //run this code when the value of count changes
   return (
     <div className="grid grid-cols-2">
       <div className="col">
@@ -156,7 +169,23 @@ const Calculator = () => {
         )}
       </div>
       <div className="col my-auto mx-auto align-middle">
-        <h1>{totalScore}</h1>
+        <CountUp
+          start={prevCountRef.current}
+          end={totalScore}
+          duration={2}
+          separator=" "
+          decimals={0}
+          prefix=""
+          suffix=" SEK"
+        >
+          {({ countUpRef }) => {
+            return (
+              <div>
+                <span ref={countUpRef} />
+              </div>
+            );
+          }}
+        </CountUp>
       </div>
     </div>
   );

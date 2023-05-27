@@ -1,8 +1,8 @@
 "use client";
 import Image from "next/image";
 import AppBar from "@mui/material/AppBar";
-import LinkBox from "./components/LinkBox";
-import Calculator from "./components/Calculator";
+import LinkBox from "./components/link-box";
+import Calculator from "./components/calculator";
 import "@fontsource/roboto/300.css";
 import "@fontsource/roboto/400.css";
 import "@fontsource/roboto/500.css";
@@ -47,7 +47,7 @@ export default function Home() {
       <div className="flex min-h-screen flex-col items-center p-">
         <Calculator />
         <div className="mb-32 grid text-center lg:mb-0 lg:grid-cols-4 lg:text-left">
-          {links.map(link => (
+          {links.map((link) => (
             <LinkBox
               key={link.id}
               name={link.name}
